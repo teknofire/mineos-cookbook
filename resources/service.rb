@@ -1,11 +1,15 @@
 property :user, String, default: 'root'
 property :home, String
 
+default_action :enable
+
+# Re-Implemented from pm2 cookbook until they fix issue with startup on latest version of pm2
+# https://github.com/Mindera/pm2-cookbook/issues/25
 action :enable do
   Chef::Log.info "Start or gracefully reload pm2 application #{new_resource.name}"
 
   # Set startup based on platform
-  cmd = "pm2 startup"
+  cmd = 'pm2 startup'
   # Add the user option if doing it as a different user
   cmd << " -u #{new_resource.user}"
   execute cmd do

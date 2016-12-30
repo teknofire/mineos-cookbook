@@ -20,43 +20,6 @@ task :functional do
   sh 'chef exec kitchen test -c --destroy=always'
 end
 
-namespace :kitchen do
-  desc 'Create default aws kitchen yaml'
-  task :aws do
-    require 'yaml'
-    yml = {
-      "driver" =>  {
-        "name" => "ec2",
-        "region" => "us-west-2",
-        "shared_credentials_profile" => "default",
-        "aws_ssh_key_id" => "id_rsa-aws-kitchen",
-        "security_group_ids" => ['test-kitchen'],
-        "destroy" => "always"
-      },
-      "platforms" => [{
-        "name" => "centos-6",
-        "driver" => {
-          "provision" => true,
-          "block_device_mappings" => [{
-            "device_name" => "/dev/sda1",
-            "ebs" => {
-              "volume_size" => 8,
-              "delete_on_termination" => true
-            }
-          }]
-        }
-      }],
-      "transport" => {
-        "ssh_key" => "<%=ENV['HOME']%>/.ssh/id_rsa-aws"
-      }
-    }
-
-    File.open('.kitchen.aws.yml', 'w') do |f|
-      f << yml.to_yaml
-    end
-  end
-end
-
 # Based on delivery-truck
 def bumped_metadata?
   require 'chef'
