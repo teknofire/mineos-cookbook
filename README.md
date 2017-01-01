@@ -15,10 +15,21 @@ The login will be any valid system account so access should be restricted to thi
 Add the following to the metadata.rb
 
 ```
-depends 'mineos'
+depends 'mineos', '= 0.2.0'
 ```
 
-And then either include 'mineos::default' or use the provided resources in your own recipes to install and configure the mineos services.
+Add the following to a recipe, I would not recommend including the default recipe unless you lock it to a specific version of the cookbook as future versions of the cookbook my try to update with new versions.
+
+```
+mineos_package 'mineos' do
+  action [:install, :generatessl]
+end
+
+pm2_service 'mineos' do
+  config(script: 'webui.js', cwd: '/usr/games/minecraft')
+  action [:start, :enable]
+end
+```
 
 ## Resources
 
