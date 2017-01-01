@@ -4,7 +4,7 @@ maintainer_email 'support+chef@gina.alaska.edu'
 license 'mit'
 description 'Installs/Configures mineos'
 long_description 'Installs/Configures mineos'
-version '0.1.0'
+version '0.2.0'
 issues_url 'https://github.com/teknofire/mineos-cookbook/issues'
 source_url 'https://github.com/teknofire/mineos-cookbook'
 
