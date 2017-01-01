@@ -2,7 +2,7 @@
 
 Defines resources to install and manages mineos
 
-By default to access the mineos webgui point a browser at https://IPADDRESS:8443
+By default to access the mineos webgui point a browser at https://SERVERNAME:8443
 
 The login will be any valid system account so access should be restricted to this system using a firewall or some other mechanism.
 
@@ -17,6 +17,8 @@ Add the following to the metadata.rb
 ```
 depends 'mineos'
 ```
+
+And then either include 'mineos::default' or use the provided resources in your own recipes to install and configure the mineos services.
 
 ## Resources
 
