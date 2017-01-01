@@ -8,7 +8,6 @@ version '0.1.0'
 issues_url 'https://github.com/teknofire/mineos-cookbook/issues'
 source_url 'https://github.com/teknofire/mineos-cookbook'
 
-depends 'pm2'
-depends 'nodejs'
 depends 'build-essential', '~> 7.0.3'
+depends 'nodejs'
 depends 'java'

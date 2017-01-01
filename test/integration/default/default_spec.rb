@@ -1,3 +1,8 @@
+describe command('npm') do
+  it { should exist }
+  its('stdout') { should cmp /Usage: npm \<command\>/ }
+end
+
 describe directory('/usr/games') do
   it { should exist }
 end

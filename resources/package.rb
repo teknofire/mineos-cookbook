@@ -14,9 +14,7 @@ action :install do
 
   package %w( screen rdiff-backup )
 
-  nodejs_npm 'pm2' do
-    version node['pm2']['pm2_version'] if node['pm2'].attribute?('pm2_version')
-  end
+  nodejs_npm 'pm2'
 
   directory new_resource.install_path do
     recursive true
@@ -40,12 +38,6 @@ action :install do
   nodejs_npm 'mineos' do
     path new_resource.install_path
     json true
-  end
-
-  pm2_application new_resource.name do
-    script 'webui.js'
-    cwd new_resource.install_path
-    action [:deploy]
   end
 end
 

@@ -2,13 +2,25 @@
 
 Defines resources to install and manages mineos
 
+By default to access the mineos webgui point a browser at https://IPADDRESS:8443
+
+The login will be any valid system account so access should be restricted to this system using a firewall or some other mechanism.
+
 ## Supported platforms
 
 * Ubuntu 14.04
 
+## Usage
+
+Add the following to the metadata.rb
+
+```
+depends 'mineos'
+```
+
 ## Resources
 
-### mineos_install
+### mineos_package
 
 Downloads and installs mineos
 
@@ -28,12 +40,12 @@ Downloads and installs mineos
 #### examples
 
 ```
-mineos_install 'mineos' do
+mineos_package 'mineos' do
   action [:install, :generatessl]
 end
 ```
 
-### mineos_service
+### pm2_service
 
 Custom resource to handle the management of the mineos webui.  Uses `pm2` to provide service management
 
@@ -47,6 +59,12 @@ Custom resource to handle the management of the mineos webui.  Uses `pm2` to pro
 * `graceful_reload`
 
 #### parameters
+
+* `name`
+* `user` - _(default: root)_ user that runs pm2 service
+* `home` - pm2 home to use if different from the user running pm2
+* `config` - configuration values for the pm2 service.  Example: `{ script: 'server.js', cwd: 'path/to/script' }`
+* `initsystem` - used to configure automatic startup of pm2 service on boot.  Only needed if pm2 cannot autodetect systems init method.  See `pm2 startup` documentation for more info
 
 #### examples
 
