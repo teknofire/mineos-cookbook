@@ -21,9 +21,8 @@ action :install do
   end
 
   mineos_source = "https://github.com/hexparrot/mineos-node/archive/v#{version}.tar.gz"
-  mineos_package = ::File.join(Chef::Config[:file_cache_path], 'mineos_installer.tar.gz')
 
-  remote_file mineos_package do
+  remote_file mineos_package_file do
     source mineos_source
     checksum new_resource.checksum
     notifies :run, 'execute[extract_mineos]', :immediately
@@ -31,7 +30,7 @@ action :install do
 
   execute 'extract_mineos' do
     cwd new_resource.install_path
-    command "tar --strip-components=1 -xz -f #{mineos_package}"
+    command "tar --strip-components=1 -xz -f #{mineos_package_file}"
     action :nothing
   end
 
@@ -50,5 +49,11 @@ action :generatessl do
     command './generate-sslcert.sh'
     cwd new_resource.install_path
     not_if { ::FileTest.exists? '/etc/ssl/certs/mineos.crt' }
+  end
+end
+
+action_class do
+  def mineos_package_file
+    ::File.join(Chef::Config[:file_cache_path], 'mineos_installer.tar.gz')
   end
 end

@@ -100,14 +100,14 @@ action_class do
   end
 
   def service_config_exists?
-    ::FileTest.exists?(service_config)
+    ::File.exist?(service_config)
   end
 
   def service_online?
     cmd = shell_out!('pm2 list',
-                     :user => new_resource.user,
-                     :returns => 0,
-                     :environment => pm2_env)
+                     user: new_resource.user,
+                     returns: 0,
+                     environment: pm2_env)
     !cmd.stdout.match(new_resource.name).nil?
   end
 
