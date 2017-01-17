@@ -24,11 +24,6 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 # THE SOFTWARE.
 
-mineos_package 'mineos' do
+mineos_application 'mineos' do
   action [:install, :generatessl]
-end
-
-pm2_service 'mineos' do
-  config(script: 'webui.js', cwd: '/usr/games/minecraft')
-  action [:start, :enable]
 end

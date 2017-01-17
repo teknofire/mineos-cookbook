@@ -1,0 +1,10 @@
+use_https = true
+socket_host =  '0.0.0.0'
+socket_port = <%= @port || 8443 %>
+base_directory = '<%= @game_path || '/var/games/minecraft' %>'
+
+ssl_private_key = '<%= @ssl_key || '/etc/ssl/certs/mineos.key' %>'
+ssl_certificate = '<%= @ssl_cert || '/etc/ssl/certs/mineos.crt' %>'
+ssl_cert_chain = '<%= @ssl_chain || '' %>'
+
+webui_locale = 'en_US'

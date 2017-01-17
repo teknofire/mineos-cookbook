@@ -15,7 +15,7 @@ The login will be any valid system account so access should be restricted to thi
 Add the following to the metadata.rb
 
 ```
-depends 'mineos', '= 0.2.0'
+depends 'mineos'
 ```
 
 Add the following to a recipe, I would not recommend including the default recipe unless you lock it to a specific version of the cookbook as future versions of the cookbook my try to update with new versions.
