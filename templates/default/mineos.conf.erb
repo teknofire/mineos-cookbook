@@ -1,4 +1,4 @@
-use_https = true
+use_https = <%= @https %>
 socket_host =  '0.0.0.0'
 socket_port = <%= @port || 8443 %>
 base_directory = '<%= @game_path || '/var/games/minecraft' %>'

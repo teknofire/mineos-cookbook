@@ -3,6 +3,7 @@ property :checksum, String, default: 'f6fa3d0ebfb028201c109f639ade6a054bc741a639
 property :install_path, String, default: '/usr/games/minecraft'
 
 property :games_path, String, default: '/var/games/minecraft'
+property :https, [TrueClass, FalseClass], default: true
 property :host, String, default: '0.0.0.0'
 property :port, Integer, default: 8443
 
@@ -51,7 +52,8 @@ action :install do
 
   template '/usr/local/etc/mineos.conf' do
     source 'mineos.conf.erb'
-    variables host: new_resource.host,
+    variables https: new_resource.https,
+              host: new_resource.host,
               port: new_resource.port,
               ssl_key: new_resource.ssl_key,
               ssl_cert: new_resource.ssl_cert,
