@@ -52,6 +52,7 @@ action :install do
 
   template '/usr/local/etc/mineos.conf' do
     source 'mineos.conf.erb'
+    cookbook 'mineos'
     variables https: new_resource.https,
               host: new_resource.host,
               port: new_resource.port,
@@ -64,6 +65,12 @@ action :install do
   pm2_service new_resource.name do
     config(name: new_resource.name, script: 'webui.js', cwd: new_resource.install_path)
     action [:start, :enable]
+  end
+end
+
+action :reload do
+  ruby_block do
+    notifies :reload, "pm2_service[#{new_resource.name}]"
   end
 end
 
