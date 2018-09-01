@@ -24,6 +24,12 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 # THE SOFTWARE.
 
+apt_update 'all platforms' do
+  frequency 86400
+  action :periodic
+end
+
 mineos_application 'mineos' do
   action [:install, :generatessl]
+  user node['mineos']['user']
 end

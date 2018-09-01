@@ -21,3 +21,5 @@ suites:
     run_list:
       - recipe[mineos::default]
     attributes:
+      mineos:
+        user: vagrant

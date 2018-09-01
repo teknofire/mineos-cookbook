@@ -28,12 +28,7 @@ describe file('/usr/games/minecraft/generate-sslcert.sh') do
   its('mode') { should cmp '0754' }
 end
 
-describe file('/etc/pm2/conf.d/mineos.json') do
-  it { should exist }
-  its('content') { should match /webui\.js/ }
-end
-
-describe service('pm2') do
+describe systemd_unit('mineos.service') do
   it { should be_enabled }
   it { should be_running }
 end
