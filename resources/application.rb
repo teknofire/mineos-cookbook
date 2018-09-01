@@ -74,24 +74,6 @@ action :install do
     notifies :restart, "systemd_unit[#{new_resource.name}.service]", :delayed
   end
 
-  systemd_unit "#{new_resource.name}.service" do
-    content lazy { ::File.read(::File.join(new_resource.install_path, 'init/systemd_conf')) }
-
-    action [:create, :enable]
-  end
-
-  # service new_resource.name do
-  #   action [:start, :enable]
-  # end
-end
-
-action :reload do
-  ruby_block do
-    notifies :reload, "systemd_unit[#{new_resource.name}.service]"
-  end
-end
-
-action :generatessl do
   file ::File.join(new_resource.install_path, 'generate-sslcert.sh') do
     mode '0754'
   end
@@ -100,6 +82,18 @@ action :generatessl do
     command './generate-sslcert.sh'
     cwd new_resource.install_path
     not_if { ::FileTest.exists? '/etc/ssl/certs/mineos.crt' }
+  end
+
+  systemd_unit "#{new_resource.name}.service" do
+    content lazy { ::File.read(::File.join(new_resource.install_path, 'init/systemd_conf')) }
+
+    action [:create, :enable]
+  end
+end
+
+action :reload do
+  ruby_block do
+    notifies :reload, "systemd_unit[#{new_resource.name}.service]"
   end
 end
 

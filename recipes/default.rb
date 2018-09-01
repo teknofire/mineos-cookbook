@@ -30,6 +30,6 @@ apt_update 'all platforms' do
 end
 
 mineos_application 'mineos' do
-  action [:install, :generatessl]
+  action [:install]
   user node['mineos']['user']
 end
