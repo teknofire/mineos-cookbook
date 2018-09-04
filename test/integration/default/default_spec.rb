@@ -28,7 +28,7 @@ describe file('/usr/games/minecraft/generate-sslcert.sh') do
   its('mode') { should cmp '0754' }
 end
 
-describe systemd_unit('mineos.service') do
+describe service('mineos.service') do
   it { should be_enabled }
   it { should be_running }
 end
