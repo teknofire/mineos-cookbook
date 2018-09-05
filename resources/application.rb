@@ -36,24 +36,6 @@ action :install do
     repository 'https://github.com/hexparrot/mineos-node'
   end
 
-  # mineos_source = "https://github.com/hexparrot/mineos-node/archive/v#{new_resource.version}.tar.gz"
-
-  # remote_file mineos_package_file do
-  #   source mineos_source
-  #   checksum new_resource.checksum
-  #   notifies :run, 'execute[extract_mineos]', :immediately
-  # end
-
-  # execute 'extract_mineos' do
-  #   cwd new_resource.install_path
-  #   command "tar --strip-components=1 -xz -f #{mineos_package_file}"
-  #   action :nothing
-  # end
-
-  # execute 'set owner for mineos' do
-  #   command "chown -R #{new_resource.user} #{new_resource.install_path}"
-  # end
-
   npm_package new_resource.name do
     path new_resource.install_path
     json true
