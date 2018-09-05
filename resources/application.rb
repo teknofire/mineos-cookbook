@@ -20,11 +20,13 @@ action :install do
 
   git new_resource.install_path do
     repository 'https://github.com/hexparrot/mineos-node'
+    notifies :install, 'npm_package[mineos]', :immediately
   end
 
   npm_package 'mineos' do
     path new_resource.install_path
     json true
     options ['--unsafe-perm=true', '--allow-root']
+    action :nothing
   end
 end
