@@ -29,7 +29,14 @@ apt_update 'all platforms' do
   action :periodic
 end
 
-mineos_application 'mineos' do
-  action [:install]
-  user node['mineos']['user']
+mineos_application '/usr/games/minecraft'
+
+mineos_config '/etc/mineos.conf' do
+  install_path '/usr/games/minecraft'
+  notifies :reload, 'mineos_service[mineos.service]', :immediately
+end
+
+mineos_service 'mineos.service' do
+  install_path '/usr/games/minecraft'
+  action [:create, :start]
 end
