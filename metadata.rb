@@ -1,6 +1,6 @@
 name 'mineos'
-maintainer 'UAF GINA'
-maintainer_email 'support+chef@gina.alaska.edu'
+maintainer 'Will Fisher'
+maintainer_email 'will@tekofire.net'
 license 'mit'
 description 'Installs/Configures mineos'
 long_description 'Installs/Configures mineos'

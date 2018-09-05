@@ -23,6 +23,6 @@ action :create do
 
   mineos_generate_ssl new_resource.install_path do
     only_if { new_resource.generate_cert }
-    not_if { ::File.exists?(new_resource.ssl_cert) }
+    not_if { ::File.exist?(new_resource.ssl_cert) }
   end
 end
