@@ -1,4 +1,4 @@
-name 'mineos'
+name 'tekno-mineos'
 maintainer 'Will Fisher'
 maintainer_email 'will@tekofire.net'
 license 'mit'
