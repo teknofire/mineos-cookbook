@@ -1,3 +1,5 @@
+resource_name :mineos_service
+
 property :install_path, String, default: '/usr/games/minecraft'
 
 action :create do

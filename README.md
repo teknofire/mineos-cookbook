@@ -1,4 +1,4 @@
-# mineos
+# tekno-mineos
 
 Defines custom resources to install and manages mineos
 
@@ -16,7 +16,7 @@ The login will be any valid system account so access should be restricted to thi
 Add the following to the metadata.rb
 
 ```
-depends 'mineos'
+depends 'tekno-mineos'
 ```
 
 ## Resources

@@ -1,3 +1,5 @@
+resource_name :mineos_config
+
 property :https, [TrueClass, FalseClass], default: true
 property :host, String, default: '0.0.0.0'
 property :port, Integer, default: 8443
@@ -12,7 +14,7 @@ property :ssl_chain, String, default: ''
 action :create do
   template new_resource.name do
     source 'mineos.conf.erb'
-    cookbook 'mineos'
+    cookbook 'tekno-mineos'
     variables https: new_resource.https,
               host: new_resource.host,
               port: new_resource.port,

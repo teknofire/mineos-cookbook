@@ -1,3 +1,5 @@
+resource_name :mineos_generate_ssl
+
 property :install_path, String, name_property: true
 
 action :create do

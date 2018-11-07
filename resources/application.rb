@@ -1,3 +1,5 @@
+resource_name :mineos_application
+
 property :install_path, String, name_property: true
 
 default_action :install
